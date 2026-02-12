@@ -5,78 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Portfolio - 點點全球面試</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-        }
+        html, body { height: 100%; font-family: 'Microsoft JhengHei', 'Arial', sans-serif; color: #333; background: #f8f9fa; }
 
-        .container {
-            max-width: 1200px;
+        .page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 480px;
             margin: 0 auto;
+            background: #fff;
         }
 
-        /* 第一部分：個人資訊 */
+        /* ── 第一部分 ── */
         .section-profile {
-            background: linear-gradient(135deg, #f8faf7 0%, #ffffff 100%);
-            padding: 80px 40px;
-            color: #333;
-            border-bottom: 4px solid #7CB342;
-        }
-
-        .profile-content {
+            background: linear-gradient(160deg, #f8faf7 0%, #ffffff 100%);
+            border-bottom: 3px solid #7CB342;
+            padding: 28px 20px 20px;
             display: flex;
             align-items: center;
-            gap: 60px;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 18px;
         }
 
-        .profile-photo {
+        .profile-photo img {
+            width: 90px;
+            height: 90px;
+            border-radius: 14px;
+            object-fit: cover;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
             flex-shrink: 0;
         }
 
-        .photo-placeholder {
-            width: 240px;
-            height: 240px;
-            background: white;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: #7CB342;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        }
-
-        .profile-info {
-            flex: 1;
-        }
-
         .profile-info h1 {
-            font-size: 42px;
-            margin-bottom: 30px;
+            font-size: 26px;
             font-weight: 700;
             color: #7CB342;
+            margin-bottom: 5px;
         }
 
-        .experience-list {
-            list-style: none;
+        .tagline {
+            font-size: 12.5px;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-style: italic;
+            border-left: 3px solid #FF9800;
+            padding-left: 8px;
         }
+
+        .experience-list { list-style: none; }
 
         .experience-list li {
-            padding: 12px 0;
-            padding-left: 25px;
+            font-size: 13px;
+            color: #555;
+            padding-left: 16px;
             position: relative;
-            font-size: 18px;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         .experience-list li:before {
@@ -85,388 +70,257 @@
             left: 0;
             color: #FF9800;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 13px;
         }
 
-        /* 第二部分：HR 定位 */
-        .section-philosophy {
-            background: white;
-            padding: 60px 40px;
-        }
-
-        .philosophy-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .philosophy-content h2 {
-            color: #333;
-            font-size: 32px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .philosophy-text {
-            background: #f5f9f3;
-            padding: 40px;
-            border-radius: 15px;
-            font-size: 18px;
-            line-height: 2;
-            color: #555;
-            border-left: 5px solid #FF9800;
-        }
-
-        /* 第三部分：工作亮點 */
+        /* ── 工作亮點 ── */
         .section-achievements {
-            padding: 80px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 16px 16px 0;
             background: #fafafa;
         }
 
-        .achievements-content {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            color: #7CB342;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        /* 按鈕組 */
         .tabs {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
         }
 
         .tab-btn {
+            flex: 1;
             background: white;
-            border: 3px solid #7CB342;
+            border: 2px solid #7CB342;
             color: #7CB342;
-            padding: 20px 50px;
-            font-size: 24px;
+            padding: 10px 4px;
+            font-size: 15px;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             font-family: 'Microsoft JhengHei', sans-serif;
         }
 
-        .tab-btn:hover {
-            background: #7CB342;
-            color: white;
-            box-shadow: 0 8px 20px rgba(124, 179, 66, 0.3);
-        }
+        .tab-btn:hover { background: #7CB342; color: white; }
 
         .tab-btn.active {
             background: linear-gradient(135deg, #7CB342 0%, #9CCC65 100%);
             color: white;
             border-color: #7CB342;
-            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+            box-shadow: 0 4px 12px rgba(124,179,66,0.35);
         }
 
-        /* 內容區域 */
-        .tab-content {
-            display: none;
-        }
+        .tab-content { display: none; }
 
         .tab-content.active {
             display: block;
-            animation: slideIn 0.6s ease;
+            animation: slideIn 0.4s ease;
         }
 
-        .tab-content.slide-from-left {
-            animation: slideFromLeft 0.6s ease;
-        }
-
-        .tab-content.slide-from-right {
-            animation: slideFromRight 0.6s ease;
-        }
+        .tab-content.slide-from-left { animation: slideFromLeft 0.4s ease; }
+        .tab-content.slide-from-right { animation: slideFromRight 0.4s ease; }
 
         @keyframes slideFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
-
         @keyframes slideFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
-
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
 
         .content-box {
             background: white;
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            border-top: 5px solid #FF9800;
+            border-radius: 16px;
+            padding: 20px 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            border-top: 4px solid #FF9800;
         }
 
-        .content-section {
-            margin-bottom: 40px;
-        }
-
-        .content-section:last-child {
-            margin-bottom: 0;
-        }
+        .content-section { margin-bottom: 18px; }
+        .content-section:last-child { margin-bottom: 0; }
 
         .content-section h3 {
             color: #FF9800;
-            font-size: 26px;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-bottom: 10px;
             font-weight: 700;
-            border-bottom: 2px solid #7CB342;
-            padding-bottom: 10px;
+            border-bottom: 1.5px solid #e8f5e9;
+            padding-bottom: 6px;
         }
 
-        .content-list {
-            list-style: none;
-            padding-left: 0;
-        }
+        .content-list { list-style: none; }
 
         .content-list li {
-            padding: 15px 0;
-            padding-left: 30px;
+            padding: 7px 0 7px 20px;
             position: relative;
-            font-size: 17px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.7;
             color: #555;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f5f5f5;
         }
 
-        .content-list li:last-child {
-            border-bottom: none;
-        }
+        .content-list li:last-child { border-bottom: none; }
 
         .content-list li:before {
             content: "•";
             position: absolute;
             left: 0;
             color: #7CB342;
-            font-size: 28px;
-            line-height: 1;
+            font-size: 20px;
+            line-height: 1.2;
         }
 
-        /* 響應式設計 */
-        @media (max-width: 768px) {
-            .profile-content {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
-
-            .profile-info h1 {
-                font-size: 32px;
-            }
-
-            .experience-list li {
-                font-size: 16px;
-            }
-
-            .tab-btn {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
-
-            .content-box {
-                padding: 30px 25px;
-            }
-
-            .philosophy-text {
-                padding: 25px;
-                font-size: 16px;
-            }
-        }
-
-        /* 頁尾 */
+        /* ── 頁尾 ── */
         .footer {
-            background: #333;
-            color: white;
             text-align: center;
-            padding: 30px;
-            font-size: 14px;
+            padding: 10px;
+            font-size: 11px;
+            color: #bbb;
+            border-top: 1px solid #eee;
+            background: #fff;
+            margin-top: 16px;
+        }
+
+        /* ── 桌機 ── */
+        @media (min-width: 481px) {
+            .page { max-width: 700px; box-shadow: 0 0 40px rgba(0,0,0,0.08); }
+
+            .section-profile { padding: 36px 40px 28px; gap: 28px; }
+
+            .profile-photo img { width: 120px; height: 120px; }
+
+            .profile-info h1 { font-size: 32px; }
+
+            .tagline { font-size: 15px; }
+
+            .experience-list li { font-size: 15px; }
+
+            .section-achievements { padding: 24px 32px 0; }
+
+            .tab-btn { font-size: 17px; padding: 12px 10px; }
+
+            .content-box { padding: 28px; }
+
+            .content-section h3 { font-size: 18px; }
+
+            .content-list li { font-size: 17px; }
         }
     </style>
 </head>
 <body>
-    <!-- 第一部分：個人資訊 -->
+<div class="page">
+
+    <!-- 第一部分：個人資訊 + 座右銘 -->
     <section class="section-profile">
-        <div class="profile-content">
-            <div class="profile-photo">
-                <img src="profile-photo.jpg" alt="Hazel Hsieh" style="width: 240px; height: 240px; border-radius: 20px; object-fit: cover; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
-            </div>
-            <div class="profile-info">
-                <h1>Hazel Hsieh</h1>
-                <ul class="experience-list">
-                    <li>四年課程設計與教學經驗</li>
-                    <li>六年 Full Function HR</li>
-                    <li>擅長組織發展&人才發展</li>
-                </ul>
-            </div>
+        <div class="profile-photo">
+            <img src="profile-photo.jpg" alt="Hazel Hsieh">
+        </div>
+        <div class="profile-info">
+            <h1>Hazel Hsieh</h1>
+            <p class="tagline">HR 的存在是為組織的願景與目標鋪路，並解決前往目標路上遇到的困難</p>
+            <ul class="experience-list">
+                <li>四年課程設計與教學經驗</li>
+                <li>六年 Full Function HR</li>
+                <li>擅長組織發展&人才發展</li>
+            </ul>
         </div>
     </section>
 
-    <!-- 第二部分：HR 定位 -->
-    <section class="section-philosophy">
-        <div class="philosophy-content">
-            <h2>我認為 HR 的本質是</h2>
-            <div class="philosophy-text">
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 12px 0; padding-left: 25px; position: relative; font-size: 18px;">
-                        <span style="position: absolute; left: 0; color: #FF9800; font-weight: bold; font-size: 20px;">✓</span>
-                        為了組織的願景與目標鋪路
-                    </li>
-                    <li style="padding: 12px 0; padding-left: 25px; position: relative; font-size: 18px;">
-                        <span style="position: absolute; left: 0; color: #FF9800; font-weight: bold; font-size: 20px;">✓</span>
-                        解決前往目標路上遇到的困難
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- 第三部分：工作亮點 -->
+    <!-- 工作亮點 -->
     <section class="section-achievements">
-        <div class="achievements-content">
-            
-            <!-- 按鈕選單 -->
-            <div class="tabs">
-                <button class="tab-btn active" onclick="showTab('org-dev')">組織發展</button>
-                <button class="tab-btn" onclick="showTab('talent-dev')">人才發展</button>
-                <button class="tab-btn" onclick="showTab('recruitment')">人才招募</button>
-            </div>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('org-dev', event)">組織發展</button>
+            <button class="tab-btn" onclick="showTab('talent-dev', event)">人才發展</button>
+            <button class="tab-btn" onclick="showTab('recruitment', event)">人才招募</button>
+        </div>
 
-            <!-- 組織發展內容 -->
-            <div id="org-dev" class="tab-content active">
-                <div class="content-box">
-                    <div class="content-section">
-                        <h3>Insight</h3>
-                        <ul class="content-list">
-                            <li>管理層的以身作則最重要</li>
-                            <li>能落實在制度與日常工作流程中的，才是真文化</li>
-                        </ul>
-                    </div>
-                    <div class="content-section">
-                        <h3>Outcome</h3>
-                        <ul class="content-list">
-                            <li>主導 AppWorks School 願景使命與核心價值觀制定，並設計文化落地機制</li>
-                            <li>均一 AI First 的文化導入與落地</li>
-                        </ul>
-                    </div>
+        <div id="org-dev" class="tab-content active">
+            <div class="content-box">
+                <div class="content-section">
+                    <h3>Insight</h3>
+                    <ul class="content-list">
+                        <li>管理層的以身作則最重要</li>
+                        <li>能落實在制度與日常工作流程中的，才是真文化</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h3>Outcome</h3>
+                    <ul class="content-list">
+                        <li>均一 AI First 的文化導入與落地</li>
+                        <li>主導 AppWorks School 願景使命與核心價值觀制定，並設計文化落地機制</li>
+                    </ul>
                 </div>
             </div>
+        </div>
 
-            <!-- 人才發展內容 -->
-            <div id="talent-dev" class="tab-content">
-                <div class="content-box">
-                    <div class="content-section">
-                        <h3>Insight</h3>
-                        <ul class="content-list">
-                            <li>人的成長 70% 來自實戰，20% 來自 mentor，10% 來自教育訓練</li>
-                            <li>優先關注關鍵人才</li>
-                            <li>目標要明確、報酬要合理</li>
-                        </ul>
-                    </div>
-                    <div class="content-section">
-                        <h3>Outcome</h3>
-                        <ul class="content-list">
-                            <li>Aiworks 技術導師社群經營，維持 talent pool 活躍性</li>
-                            <li>推動均一實習生制度從半年期改為一年期，提升人力穩定性</li>
-                        </ul>
-                    </div>
+        <div id="talent-dev" class="tab-content">
+            <div class="content-box">
+                <div class="content-section">
+                    <h3>Insight</h3>
+                    <ul class="content-list">
+                        <li>優先關注關鍵人才</li>
+                        <li>目標要明確、報酬要合理</li>
+                        <li>人的成長 70% 來自實戰，20% 來自 mentor，10% 來自教育訓練</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h3>Outcome</h3>
+                    <ul class="content-list">
+                        <li>Aiworks 技術導師社群經營，維持 talent pool 活躍性</li>
+                        <li>推動均一實習生制度從半年期改為一年期，提升人力穩定性</li>
+                    </ul>
                 </div>
             </div>
+        </div>
 
-            <!-- 人才招募內容 -->
-            <div id="recruitment" class="tab-content">
-                <div class="content-box">
-                    <div class="content-section">
-                        <h3>Insight</h3>
-                        <ul class="content-list">
-                            <li>僱主品牌的重點是內外一致，誠實透明為上</li>
-                            <li>Middle level 以上人才搭配 AI ＞多位 junior</li>
-                        </ul>
-                    </div>
-                    <div class="content-section">
-                        <h3>Outcome</h3>
-                        <ul class="content-list">
-                            <li>於 6 個月內規劃並執行 AppWorks School 成長期的人才擴張策略，完成組織規模倍增</li>
-                        </ul>
-                    </div>
+        <div id="recruitment" class="tab-content">
+            <div class="content-box">
+                <div class="content-section">
+                    <h3>Insight</h3>
+                    <ul class="content-list">
+                        <li>僱主品牌的重點是內外一致，誠實透明為上</li>
+                        <li>Middle level 以上人才搭配 AI ＞多位 junior</li>
+                    </ul>
+                </div>
+                <div class="content-section">
+                    <h3>Outcome</h3>
+                    <ul class="content-list">
+                        <li>於 6 個月內規劃並執行 AppWorks School 成長期的人才擴張策略，完成組織規模倍增</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 頁尾 -->
     <div class="footer">
         <p>Created with AI · Vibe Coding for DOTDOT Interview © 2026</p>
     </div>
 
-    <script>
-        let currentTab = 'org-dev';
-        const tabOrder = ['org-dev', 'talent-dev', 'recruitment'];
+</div>
 
-        function showTab(tabId) {
-            // 隱藏所有內容
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => {
-                content.classList.remove('active', 'slide-from-left', 'slide-from-right');
-            });
+<script>
+    let currentTab = 'org-dev';
+    const tabOrder = ['org-dev', 'talent-dev', 'recruitment'];
 
-            // 移除所有按鈕的 active 狀態
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-            });
+    function showTab(tabId, event) {
+        document.querySelectorAll('.tab-content').forEach(c =>
+            c.classList.remove('active', 'slide-from-left', 'slide-from-right'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
-            // 判斷方向
-            const currentIndex = tabOrder.indexOf(currentTab);
-            const newIndex = tabOrder.indexOf(tabId);
-            const selectedContent = document.getElementById(tabId);
+        const currentIndex = tabOrder.indexOf(currentTab);
+        const newIndex = tabOrder.indexOf(tabId);
+        const selectedContent = document.getElementById(tabId);
 
-            if (newIndex < currentIndex) {
-                // 點擊的按鈕在左邊，從右邊飄入
-                selectedContent.classList.add('active', 'slide-from-right');
-            } else {
-                // 點擊的按鈕在右邊，從左邊飄入
-                selectedContent.classList.add('active', 'slide-from-left');
-            }
-
-            // 更新當前 tab
-            currentTab = tabId;
-
-            // 設定對應按鈕為 active
-            event.target.classList.add('active');
-        }
-    </script>
+        selectedContent.classList.add('active', newIndex < currentIndex ? 'slide-from-right' : 'slide-from-left');
+        currentTab = tabId;
+        event.target.classList.add('active');
+    }
+</script>
 </body>
 </html>
